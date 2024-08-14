@@ -5,6 +5,7 @@ DevOps assignment files.
 
 ### Prerequisites
 1. Nodejs and npm installed.
+2. Docker and Kubernetes cluster.
 
 ### Source Control
 Step 1. Clone the repository 'https://github.com/MaheshRautrao/React-Todo-list' to local.
@@ -93,4 +94,23 @@ spec:
     nodePort: 30007
 ```
 
-Step 3. Open a browser and navigate to 'http://localhost:30007' or 'http://127.0.0.1:30007'. You should see the todo-app served.
+Step 3. Create the deployement and service in the Kubernetes cluster with following command.
+```sh
+# Deployment
+kubectl apply -f deployment.yaml
+
+# Service
+kubectl apply -f service.yaml
+
+# Check deployment status
+kubectl get deployment/todo-app-deployment
+NAME                    READY   UP-TO-DATE  AVAILABLE   AGE
+todo-app-deployment     1/1     1           1           37m  
+
+# Check service status
+kubectl get service/todo-app-node-port
+NAME                    TYPE        CLUSTER-IP      EXTERNAL-IP     AGE
+todo-app-node-port     NodePort     10.106.144.67   <none>          37m  
+```
+
+Step 4. Once the services have running status, open a browser and navigate to 'http://localhost:30007' or 'http://127.0.0.1:30007'. You should see the todo-app served.
